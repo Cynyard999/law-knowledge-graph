@@ -1,0 +1,81 @@
+*{
+  margin: 0;
+  padding: 0;
+}
+body {
+  overflow: hidden;
+}
+.myContainer{
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100vh;
+}
+.myHeader {
+  height: 10%;
+  width: 100%;
+  top: 0;
+  position: fixed;
+  z-index: 3;
+}
+.mySection{
+  flex:1;
+}
+.mainBody{
+  margin-top: 5rem;
+  height: 85%;
+  list-style: none;
+  display: flex;
+  justify-content: flex-start;
+}
+.bar{
+  width: 20%;
+  height: 100%;
+}
+
+.graph{
+  width: 60vw;
+  height: 100%;
+  border-radius: 8px;
+  background: #F8F8FF;
+}
+
+.mainGraph {
+  background: #F8F8FF;
+}
+.node {
+  stroke: #BFEFFF;
+  stroke-width: 1;
+  cursor: pointer;
+}
+
+.treeNode{
+  stroke-width: 1;
+}
+
+.treeLink{
+  fill: none;
+  stroke: #ccc;
+  stroke-width: 1.5px;
+}
+.treeText{
+  font-size: 8px;
+}
+
+.node:hover {
+  stroke-width: 3;
+}
+.nodesName{
+  fill:black ;
+  font-size:8px
+}
+.link {
+  cursor: pointer;
+}
+.linksName{
+  fill: #9BCD9B;
+  text-anchor: middle;
+  font-size: 8px;
+  font-weight: bold;
+  user-select: none;
+}

@@ -1,0 +1,126 @@
+.detailPanelContainer{
+  height: 100%;
+}
+.boxCard {
+  height: 100%;
+  width: 100%;
+}
+
+.relation-select {
+  margin-top: 25px;
+  height: 20px;
+}
+
+table {
+  width: 250px;
+}
+
+td {
+  text-align: left;
+  font-size: 14px;
+}
+
+.info-line {
+  width: 150px;
+  text-overflow: ellipsis;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+.keys {
+  float: left;
+  width: 56px;
+}
+
+.shapeGroup{
+  display: flex;
+  justify-content: space-evenly;
+}
+
+#changeToCircle{
+  width: 2rem;
+  height: 2rem;
+  background-color:#EAEAEA;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  cursor: pointer;
+}
+#changeToCircle:hover{
+  background-color: #DBDBDB;
+}
+#changeToRect{
+  width: 2rem;
+  height: 2rem;
+  background-color:#EAEAEA;
+  cursor: pointer;
+}
+#changeToRect:hover{
+  background-color: #DBDBDB;
+}
+
+.colorfulCircleGroup{
+  display: flex;
+  justify-content: space-between;
+}
+
+#colorfulCircle1{
+  width: 2rem;
+  height: 2rem;
+  background-color:#EAEAEA;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  cursor: pointer;
+}
+#colorfulCircle1:hover{
+  background-color: #DBDBDB;
+}
+#colorfulCircle2{
+  width: 2rem;
+  height: 2rem;
+  background-color:#ccccff;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  cursor: pointer;
+}
+#colorfulCircle2:hover{
+  background-color: #caf;
+}
+#colorfulCircle3{
+  width: 2rem;
+  height: 2rem;
+  background-color:#EEC591;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  cursor: pointer;
+}
+#colorfulCircle3:hover{
+  background-color: #EEB422;
+}
+#colorfulCircle4{
+  width: 2rem;
+  height: 2rem;
+  background-color:#CAE1FF;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  cursor: pointer;
+}
+#colorfulCircle4:hover{
+  background-color: #B9D3EE;
+}
+#colorfulCircle5{
+  width: 2rem;
+  height: 2rem;
+  background-color:#9BCD9B;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  cursor: pointer;
+}
+#colorfulCircle5:hover{
+  background-color: #B3EE3A;
+}

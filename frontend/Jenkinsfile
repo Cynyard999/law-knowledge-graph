@@ -1,0 +1,49 @@
+pipeline {
+    agent any
+    triggers {
+       GenericTrigger(
+           causeString: 'Triggered by develop',
+           genericVariables: [[key: 'ref', value: '$.ref']],
+           printContributedVariables: true,
+           printPostContent: true,
+           regexpFilterExpression: 'refs/heads/' + BRANCH_NAME,
+           regexpFilterText: 'refs/heads/dev',
+           token: 'siegelion'
+       )
+    }
+
+    stages {
+
+      stage('frontend dev deploy') {
+        when{
+            branch 'dev'
+        }
+        steps {
+            echo 'start deploying'
+            sh 'npm install --ignore-scripts'
+            sh 'npm install'
+            sh 'rm -rf ./dist/*'
+            sh 'npm run build'
+            sh 'rm -rf /usr/local/nginx/html/*'
+            sh 'cp -r ./dist/* /usr/local/nginx/html'
+            echo 'finish deploying'
+         }
+      }
+
+      stage('frontend master deploy') {
+              when{
+                  branch 'master'
+              }
+              steps {
+                  echo 'start deploying'
+                  sh 'npm install --ignore-scripts'
+                  sh 'npm install'
+                  sh 'rm -rf ./dist/*'
+                  sh 'npm run build'
+                  sh 'rm -rf /usr/local/nginx/html/*'
+                  sh 'cp -r ./dist/* /usr/local/nginx/html'
+                  echo 'finish deploying'
+               }
+            }
+   }
+}

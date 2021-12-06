@@ -1,0 +1,72 @@
+pipeline {
+    agent any
+    triggers {
+       GenericTrigger(
+           causeString: 'Triggered by develop',
+           genericVariables: [[key: 'ref', value: '$.ref']],
+           printContributedVariables: true,
+           printPostContent: true,
+           regexpFilterExpression: 'refs/heads/' + BRANCH_NAME,
+           regexpFilterText: 'refs/heads/dev',
+           token: 'siegelion'
+       )
+    }
+
+    stages {
+
+      stage('test') {
+         steps {
+            echo "start unitTest......"
+            sh 'pwd'
+            sh "mvn org.jacoco:jacoco-maven-plugin:prepare-agent -f SpringbootBackend/pom.xml clean test -Dautoconfig.skip=true -Dmaven.test.skip=false -Dmaven.test.failure.ignore=true"
+            junit 'SpringbootBackend/target/surefire-reports/*.xml'
+            //code coverage.LineCoverage>10%.
+            jacoco changeBuildStatus: true, maximumLineCoverage: '70'
+         }
+      }
+
+      stage('maven build') {
+         steps {
+            echo 'maven build and skip test'
+            sh 'mvn clean package -f SpringbootBackend/pom.xml -Dmaven.test.skip=true'
+         }
+      }
+
+      stage('master deploy'){
+          when{
+              branch 'master'
+          }
+          steps{
+              echo 'branch master'
+              echo 'deploy'
+              sh 'mv SpringbootBackend/target/*.jar lawKG_master.jar'
+              script {
+                  try {
+                      sh "kill -15 \$(ps -ef|grep 'java -jar lawKG_master.jar'|gawk '\$0 !~/grep/ {print \$2}' |tr -s '\n' ' ')"
+                  } catch (err) {
+                      echo "first run master"
+                  }
+              }
+              sh "JENKINS_NODE_COOKIE=dontKillMe nohup java -jar lawKG_master.jar --server.port=8111 >/dev/null 2>&1 &"
+          }
+      }
+      stage('dev deploy'){
+          when{
+              branch 'dev'
+          }
+          steps{
+              echo 'branch dev'
+              echo 'deploy'
+              sh 'mv SpringbootBackend/target/*.jar lawKG_dev.jar'
+              script {
+                  try {
+                      sh "kill -15 \$(ps -ef|grep 'java -jar lawKG_dev.jar'|gawk '\$0 !~/grep/ {print \$2}' |tr -s '\n' ' ')"
+                  } catch (err) {
+                      echo "first run dev"
+                  }
+              }
+              sh "JENKINS_NODE_COOKIE=dontKillMe nohup java -jar lawKG_dev.jar --server.port=8222 >/dev/null 2>&1 &"
+          }
+      }
+   }
+}

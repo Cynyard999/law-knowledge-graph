@@ -1,0 +1,31 @@
+/SpringbootBackend/target/
+/SpringbootBackend/.idea/
+/SpringbootBackend/Springboot-Backend.iml
+/IntelligentKG/src/embedding/word_vec
+/IntelligentKG/src/embedding/word_vec_300.bin
+/IntelligentKG/src/__pycache__/
+!.mvn/wrapper/maven-wrapper.jar
+
+### STS ###
+.apt_generated
+.classpath
+.factorypath
+.project
+.settings
+.springBeans
+.sts4-cache
+
+### IntelliJ IDEA ###
+.idea
+*.iws
+*.iml
+*.ipr
+.DS_Store
+
+### NetBeans ###
+/nbproject/private/
+/nbbuild/
+/dist/
+/nbdist/
+/.nb-gradle/
+/build/
